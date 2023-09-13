@@ -1,17 +1,39 @@
 {
   "name": "@buh/unzip",
-  "version": "0.0.0",
-  "type": "module",
-  "module": "src/lib/index.ts",
+  "version": "0.1.0",
+  "description": "another unzip",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
+    "build": "bun run build.ts",
+    "prepublishOnly": "bun run build",
     "test": "bun run tests/index.ts",
     "format": "prettier **/*.ts --check",
     "format:fix": "prettier **/*.ts --write",
     "lint": "eslint ."
   },
+  "license": "MIT",
+  "files": [
+    "package.json",
+    "LICENSE",
+    "README.md",
+    "dist"
+  ],
+  "keywords": [
+    "unzip",
+    "bun"
+  ],
+  "homepage": "https://github.com/bsfranca2/unzip#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bsfranca2/unzip.git"
+  },
+  "bugs": "https://github.com/bsfranca2/unzip/issues",
+  "author": "Bruno Franca <bsfranca2@gmail.com>",
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^6.7.0",
     "@typescript-eslint/parser": "^6.7.0",
+    "bun-plugin-dts": "^0.2.0",
     "bun-types": "latest",
     "eslint": "^8.49.0",
     "eslint-config-prettier": "^9.0.0",

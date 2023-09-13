@@ -1,19 +1,24 @@
 # unzip
 
-To install dependencies:
+## Installation
 
-```bash
-bun install
+`npm install @buh/unzip`
+
+## Quick Examples
+
+```javascript
+import { Zip } from '@buh/unzip';
+
+// const file = Bun.file('archive.zip');
+// const arrayBuffer = await file.arrayBuffer();
+
+const zip = new Zip(arrayBuffer);
+for (const entry of zip.iterator()) {
+  console.log(entry.fileName, entry.lastModified(), zip.textDecoder.decode(entry.getData()));
+}
 ```
-
-To run:
-
-```bash
-bun run index.ts
-```
-
-This project was created using `bun init` in bun v1.0.0. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
 
 ## References
+
 - [kriskowal/zip](https://github.com/kriskowal/zip)
 - [.ZIP File Format Specification](/docs/APPNOTE.md)
