@@ -1,1 +1,1 @@
-hyperfine --warmup 10 --runs 100 'bun run tests/index.ts' 'node tests/node.js'
+hyperfine --warmup 100 --runs 1000 'bun run tests/index.ts' 'node tests/node.js'
