@@ -6,13 +6,33 @@
 
 ## Quick Examples
 
+### Bun
+
+Use `inflateSync` from `Bun.inflateSync`
+
 ```javascript
 import { Zip } from '@buh/unzip';
 
-// const file = Bun.file('archive.zip');
-// const arrayBuffer = await file.arrayBuffer();
+const file = Bun.file('archive.zip');
+const arrayBuffer = await file.arrayBuffer();
 
-const zip = new Zip(arrayBuffer);
+const zip = await Zip.create(arrayBuffer);
+for (const entry of zip.iterator()) {
+  console.log(entry.fileName, entry.lastModified(), zip.textDecoder.decode(entry.getData()));
+}
+```
+
+### Node
+
+Use `inflateRawSync` from `node:zlib`
+
+```javascript
+import { Zip } from '@buh/unzip';
+import { readFileSync } from 'node:fs';
+
+const file = readFileSync('archive.zip');
+
+const zip = await Zip.create(file.buffer);
 for (const entry of zip.iterator()) {
   console.log(entry.fileName, entry.lastModified(), zip.textDecoder.decode(entry.getData()));
 }
@@ -22,3 +42,7 @@ for (const entry of zip.iterator()) {
 
 - [kriskowal/zip](https://github.com/kriskowal/zip)
 - [.ZIP File Format Specification](/docs/APPNOTE.md)
+
+## Chagelogs
+
+You can track the changelogs in [CHANGELOGS.md](/CHANGELOG.md) file.

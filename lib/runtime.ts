@@ -8,10 +8,15 @@ const getCurrentRuntime = () => {
   return 'browser';
 };
 
-export const getInflateFnByRuntime = (): InflateFn => {
+export const getInflateFnByRuntime = async (): Promise<InflateFn> => {
   switch (getCurrentRuntime()) {
     case 'bun':
       return Bun.inflateSync;
+
+    case 'node':
+      // eslint-disable-next-line no-case-declarations
+      const { inflateRawSync } = await import('node:zlib');
+      return inflateRawSync;
 
     default:
       throw new Error('Not implemented yet');

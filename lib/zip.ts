@@ -20,9 +20,16 @@ export class Zip {
 
   textDecoder = new TextDecoder('utf-8');
 
-  constructor(arrayBuffer: ArrayBuffer, options?: Partial<Options>) {
+  private constructor(arrayBuffer: ArrayBuffer, options: Options) {
     this.#dataView = new ZipDataView(arrayBuffer);
-    this.#inflate = options?.inflate ?? getInflateFnByRuntime();
+    this.#inflate = options.inflate;
+  }
+
+  static async create(arrayBuffer: ArrayBuffer, options?: Partial<Options>) {
+    const _options = (options ?? {}) as Options;
+    _options.inflate ??= await getInflateFnByRuntime();
+
+    return new Zip(arrayBuffer, _options);
   }
 
   readStructure() {

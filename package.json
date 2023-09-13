@@ -1,7 +1,9 @@
 {
   "name": "@buh/unzip",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "another unzip",
+  "type": "module",
+  "module": "dist/index.js",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
